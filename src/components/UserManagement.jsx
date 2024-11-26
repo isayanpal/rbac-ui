@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { users, roles } from "../data";
 import { FaPlus } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import {toast} from "react-hot-toast"
 
 const UserManagement = () => {
   const [userList, setUserList] = useState(users);
@@ -45,6 +46,16 @@ const UserManagement = () => {
     );
     if (confirmDelete) {
       setUserList(userList.filter((user) => user.id !== userId));
+      toast.success("User deleted successfully!",
+        {
+          icon: '🗑️',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      );
     }
   };
 
@@ -67,7 +78,7 @@ const UserManagement = () => {
           value={searchTerm}
           onChange={handleSearchChange}
           className="w-full bg-transparent text-white outline-none"
-          placeholder="Search by name"
+          placeholder="Search username"
         />
       </div>
       <button

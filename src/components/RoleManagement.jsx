@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { roles, permissions } from '../data';
 import { FaPlus } from "react-icons/fa";
-
+import {toast} from "react-hot-toast"
 
 const RoleManagement = () => {
   const [roleList, setRoleList] = useState(roles);
@@ -34,6 +34,16 @@ const RoleManagement = () => {
     const confirmDelete = window.confirm('Are you sure you want to delete this role?');
     if (confirmDelete) {
       setRoleList(roleList.filter((role) => role.id !== roleId));
+      toast.success("Role deleted successfully!",
+        {
+          icon: '🗑️',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      );
     }
   };
 
